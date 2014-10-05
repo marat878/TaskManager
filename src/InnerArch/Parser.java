@@ -1,6 +1,12 @@
 package InnerArch;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+import java.io.IOException;
 
 /**
  * Created by Ruzil on 04.10.2014.
@@ -20,6 +26,22 @@ public class Parser {
 
     private void AddAction(ActionType type, String command, Date time){
         cmdList.Add(new Action(type, command, time));
+    }
+
+    public ArrayList<String> TaskReader()
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File("TaskList.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (scanner.hasNextLine()) {
+            list.add(scanner.nextLine());
+        }
+        scanner.close();
+        return list;
     }
 
     public int ParseString(String str) {
