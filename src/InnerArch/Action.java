@@ -16,6 +16,17 @@ public class Action extends Task {
         runTime = time;
     }
 
+    public void Exec()
+    {
+        switch ( aType )
+        {
+            case atKillProc:
+                ActionRK.Kill( cmd );
+                break;
 
-
+            case atStartProc:
+                //ActionRK.Run( cmd );
+                break;
+        }
+    }
 }

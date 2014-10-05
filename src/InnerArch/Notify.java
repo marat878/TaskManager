@@ -7,13 +7,25 @@ import java.util.Date;
  */
 public class Notify extends Task {
     public NotifyType nType;
-    public String nTitle;
 
-    public Notify(NotifyType type, String command, Date time, String title)
+    public Notify(NotifyType type, String command, Date time)
     {
         nType = type;
         cmd = command;
         runTime = time;
-        nTitle=title;
+    }
+
+    public void Show()
+    {
+        switch ( nType )
+        {
+            case ntInfo:
+                // Out here
+                break;
+
+            case ntWarning:
+                // Out here
+                break;
+        }
     }
 }

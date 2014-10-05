@@ -20,17 +20,16 @@ public class Parser {
         cmdList = new TaskList();
     }
 
-    private void AddNotify(NotifyType type, String command, Date time, String title) {
-        cmdList.Add(new Notify(type, command, time, title));
+    private void AddNotify(NotifyType type, String command, Date time) {
+        cmdList.Add(new Notify(type, command, time));
     }
 
     private void AddAction(ActionType type, String command, Date time){
         cmdList.Add(new Action(type, command, time));
     }
 
-    public ArrayList<String> TaskReader()
+    public void TaskReader()
     {
-        ArrayList<String> list = new ArrayList<String>();
         Scanner scanner = null;
         try {
             scanner = new Scanner(new File("TaskList.txt"));
@@ -38,10 +37,13 @@ public class Parser {
             e.printStackTrace();
         }
         while (scanner.hasNextLine()) {
-            list.add(scanner.nextLine());
+            ParseString( scanner.nextLine() );
+            if( errorCode != SystemError.seNone )
+            {
+                System.out.println( errorCode.toString() );
+            }
         }
         scanner.close();
-        return list;
     }
 
     public int ParseString(String str) {
@@ -68,7 +70,7 @@ public class Parser {
                 return -1;
             }
 
-            AddNotify( nt, temp[2], time, null );
+            AddNotify( nt, temp[2], time );
 
         }
         else
