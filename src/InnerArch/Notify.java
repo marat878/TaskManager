@@ -14,9 +14,10 @@ public class Notify extends Task {
         cmd = command;
         runTime = time;
         param = parm;
+        remove = false;
     }
 
-    public void Show()
+    public void Do()
     {
         switch ( nType )
         {

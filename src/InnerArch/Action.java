@@ -15,9 +15,10 @@ public class Action extends Task {
         cmd = command;
         runTime = time;
         param = parm;
+        remove = false;
     }
 
-    public void Exec()
+    public void Do()
     {
         switch ( aType )
         {

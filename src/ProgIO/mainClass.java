@@ -1,6 +1,8 @@
 package ProgIO;
 
 import InnerArch.Parser;
+import InnerArch.TaskManager;
+
 import java.util.Scanner;
 
 /**
@@ -11,26 +13,24 @@ public class mainClass {
     public static void main( String[] args )
     {
         Scanner scn = new Scanner( System.in );
-        Parser prs = new Parser();
-
-        // init
-        prs.TaskReader();
 
         String cmd;
         System.out.println( "Task Manager 2014 (c)" );
         System.out.println( "e - exit; r - refresh" );
         System.out.printf( "#####################%n%n" );
 
+        TaskManager taskManager = new TaskManager();
+
         int done = 0;
 
         while( done == 0 )
         {
-            // ToDo: update, check time, exec tasks
+            taskManager.Update();
             cmd = scn.nextLine();
 
             if( cmd.equals( "r" ) )
             {
-                // ToDo: refresh func here
+                taskManager.Refresh();
             }
             else
             if( cmd.equals( "e" ) )

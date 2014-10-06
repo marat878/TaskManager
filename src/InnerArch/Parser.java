@@ -4,6 +4,7 @@ import com.sun.javafx.scene.layout.region.Margins;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -12,12 +13,12 @@ import java.util.Scanner;
  * Created by Ruzil on 04.10.2014.
  */
 public class Parser {
-    private SystemError errorCode;
+    private SystemError errorCode = SystemError.seNone;
     public TaskList cmdList;
 
-    public Parser()
+    public Parser( TaskList taskList )
     {
-        cmdList = new TaskList();
+        cmdList = taskList;
     }
 
     private void AddNotify(NotifyType type, String command, String param, LocalDateTime time) {
@@ -58,8 +59,10 @@ public class Parser {
         NotifyType nt;
         ActionType at;
 
+        //System.out.println(str);
+
         // ignore
-        if( str.charAt(0) == '/' ) return 1;
+        if( str.charAt(0) == '/' || str.charAt(0) == '﻿' ) return 1;
 
         if( temp.length < 10 ) {
             errorCode = SystemError.seWrongLineFormat;
@@ -77,8 +80,9 @@ public class Parser {
                 return -1;
             }
 
-            time = LocalDateTime.of( Integer.parseInt( temp[4] ), Integer.parseInt( temp[5] ),
-                    Integer.parseInt( temp[6] ), Integer.parseInt( temp[7] ),
+
+            time = LocalDateTime.of( Integer.parseInt( temp[6] ), Integer.parseInt( temp[5] ),
+                    Integer.parseInt( temp[4] ), Integer.parseInt( temp[7] ),
                     Integer.parseInt( temp[8] ), Integer.parseInt( temp[8] ));
 
             AddNotify( nt, temp[2], temp[3], time );
