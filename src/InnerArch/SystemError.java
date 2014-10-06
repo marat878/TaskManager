@@ -5,8 +5,8 @@ package InnerArch;
  */
 public enum SystemError {
     seNone,
-    seUknownNotifyType,
+    seUnknownNotifyType,
     seUnknownActionType,
     seWrongLineFormat,
-    seWrongLineHeader
+    seWrongLineHeader,
 }

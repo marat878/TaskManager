@@ -9,9 +9,14 @@ public class ActionRK {
 
     public static void Run(String[] cmd )
     {
-        try {
+        try
+        {
             Process process = Runtime.getRuntime().exec(cmd);
-        } catch (IOException e) {}
+        }
+        catch (IOException e)
+        {
+            System.out.println( e.toString() );
+        }
     }
 
     public static void Kill(String processName)
@@ -19,7 +24,10 @@ public class ActionRK {
         try {
             String[] cmd = new String[] { "cmd.exe", "/C", "taskkill /f /im", processName };
             Process process = Runtime.getRuntime().exec(cmd);
-
-        } catch (IOException e) {}
+        }
+        catch (IOException e)
+        {
+            System.out.println( e.toString() );
+        }
     }
 }

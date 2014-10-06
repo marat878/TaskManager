@@ -1,7 +1,6 @@
 package ProgIO;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
+import InnerArch.Parser;
 import java.util.Scanner;
 
 /**
@@ -9,20 +8,24 @@ import java.util.Scanner;
  */
 public class mainClass {
 
-    private static Scanner scn;
-
     public static void main( String[] args )
     {
-        scn = new Scanner( System.in );
+        Scanner scn = new Scanner( System.in );
+        Parser prs = new Parser();
 
-        String cmd = " ";
+        // init
+        prs.TaskReader();
+
+        String cmd;
         System.out.println( "Task Manager 2014 (c)" );
         System.out.println( "e - exit; r - refresh" );
+        System.out.printf( "#####################%n%n" );
 
         int done = 0;
 
         while( done == 0 )
         {
+            // ToDo: update, check time, exec tasks
             cmd = scn.nextLine();
 
             if( cmd.equals( "r" ) )
