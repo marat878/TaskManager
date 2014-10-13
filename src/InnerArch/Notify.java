@@ -1,5 +1,6 @@
 package InnerArch;
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 
 /**
@@ -17,21 +18,24 @@ public class Notify extends Task {
         remove = false;
     }
 
-    public void Do()
+    public void Do( JTextArea textArea )
     {
+        String str;
         switch ( nType )
         {
             case ntInfo:
-                System.out.format( "[%d %s %d %02d:%02d:%02d] %s%n", runTime.getDayOfMonth(),
+                str = String.format( "[%d %s %d %02d:%02d:%02d] %s%n", runTime.getDayOfMonth(),
                         runTime.getMonth().toString(), runTime.getYear(), runTime.getHour(),
                         runTime.getMinute(), runTime.getSecond(), cmd );
+                textArea.append( str );
                 break;
 
             case ntWarning:
-                System.out.format( "[%d %s %d %02d:%02d:%02d] [Внимание] %s%n",
+                str = String.format( "[%d %s %d %02d:%02d:%02d] [Внимание] %s%n",
                         runTime.getDayOfMonth(), runTime.getMonth().toString(),
                         runTime.getYear(), runTime.getHour(),
                         runTime.getMinute(), runTime.getSecond(), cmd );
+                textArea.append( str );
                 break;
         }
     }

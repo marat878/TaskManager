@@ -1,5 +1,6 @@
 package InnerArch;
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 
 /**
@@ -15,6 +16,7 @@ public class Task {
         remove = false;
     }
 
-    public void Do() { }
+    public void Do( JTextArea textArea ) { }
+
 }
 

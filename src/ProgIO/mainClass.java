@@ -1,48 +1,107 @@
 package ProgIO;
 
-import InnerArch.Parser;
 import InnerArch.TaskManager;
-
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  * Created by Marat on 01.10.2014.
  */
-public class mainClass {
+public class mainClass extends JFrame implements WindowListener {
+
+    public JButton btnRefresh;
+    public JTextArea taLog;
+    public TaskManager taskManager;
+    private Timer tmr;
+
+
+    private class tmrUpdate implements ActionListener {
+        private mainClass owner;
+
+        tmrUpdate( mainClass owner )
+        {
+            this.owner = owner;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            taskManager.Update( owner.taLog );
+        }
+    }
+
+    public mainClass() {
+        super();
+        setBounds( 200, 200, 800, 600 );
+        setTitle( "Task Manager" );
+        setVisible( true );
+
+        btnRefresh = new JButton();
+        btnRefresh.setText( "Refresh" );
+        btnRefresh.setBounds(220, 220, 200, 30);
+        btnRefresh.setVisible( true );
+        add( btnRefresh );
+        setLayout( null );
+
+        taLog = new JTextArea();
+        taLog.setBounds( 220, 300, 400, 200 );
+        taLog.setVisible(true);
+        add( taLog );
+        setLayout( null );
+
+        taskManager = new TaskManager();
+        tmr = new Timer( 100, new tmrUpdate( this ) );
+        tmr.start();
+
+        addWindowListener(this);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        if( e.getID() == WindowEvent.WINDOW_CLOSING )
+            windowClosed( new WindowEvent( this, WindowEvent.WINDOW_CLOSED ) );
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        if( e.getID() == WindowEvent.WINDOW_CLOSED )
+        {
+            tmr.stop();
+            this.dispose();
+        }
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
 
     public static void main( String[] args )
     {
-        Scanner scn = new Scanner( System.in );
+        mainClass wnd = new mainClass();
 
-        String cmd;
-        System.out.println( "Task Manager 2014 (c)" );
-        System.out.println( "e - exit; r - refresh" );
-        System.out.printf( "#####################%n%n" );
-
-        TaskManager taskManager = new TaskManager();
-
-        int done = 0;
-
-        while( done == 0 )
-        {
-            taskManager.Update();
-            cmd = scn.nextLine();
-
-            if( cmd.equals( "r" ) )
-            {
-                taskManager.Refresh();
-            }
-            else
-            if( cmd.equals( "e" ) )
-            {
-                System.out.println( "Работы программы завершена." );
-                done = 1;
-            }
-            else
-            {
-                System.out.println( "Неверная команда!" );
-            }
-        }
     }
 }
 

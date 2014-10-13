@@ -1,5 +1,6 @@
 package InnerArch;
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 
 /**
@@ -15,8 +16,7 @@ public class TaskManager {
     {
         taskList = new TaskList();
         parser = new Parser( taskList );
-        parser.TaskReader();
-        GetDest();
+        Refresh();
     }
 
     private void GetDest()
@@ -48,7 +48,6 @@ public class TaskManager {
     private void Cleanup()
     {
         int i = 0, len = taskList.GetLength();
-        Task t;
 
         while( i < len-1 )
         {
@@ -71,7 +70,7 @@ public class TaskManager {
         GetDest();
     }
 
-    public void Update()
+    public void Update( JTextArea textArea )
     {
         int i, len = taskList.GetLength();
         Task t;
@@ -80,7 +79,7 @@ public class TaskManager {
         if( curr.isAfter( destTime ) )
         {
             t = taskList.getValue( destId );
-            t.Do();
+            t.Do( textArea );
             t.remove = true;
 
             for( i = 0; i < len; i++ )
@@ -90,7 +89,7 @@ public class TaskManager {
                 if( t.runTime.isBefore( destTime ) || t.runTime.isEqual( destTime ) )
                 {
                     if( !t.remove )
-                        t.Do();
+                        t.Do( textArea );
                     t.remove = true;
                 }
             }
