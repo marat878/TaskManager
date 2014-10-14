@@ -100,8 +100,8 @@ public class Parser {
                 return -1;
             }
 
-            time = LocalDateTime.of( Integer.parseInt( temp[4] ), Integer.parseInt( temp[5] ),
-                    Integer.parseInt( temp[6] ), Integer.parseInt( temp[7] ),
+            time = LocalDateTime.of( Integer.parseInt( temp[6] ), Integer.parseInt( temp[5] ),
+                    Integer.parseInt( temp[4] ), Integer.parseInt( temp[7] ),
                     Integer.parseInt( temp[8] ), Integer.parseInt( temp[8] ));
 
             AddAction( at, temp[2], temp[3], time );

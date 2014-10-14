@@ -17,6 +17,18 @@ public class mainClass extends JFrame implements WindowListener {
     public TaskManager taskManager;
     private Timer tmr;
 
+    private class btnRefreshUpdate implements ActionListener {
+        private mainClass owner;
+
+        btnRefreshUpdate( mainClass owner ) {
+            this.owner = owner;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            owner.taskManager.Refresh();
+        }
+    }
 
     private class tmrUpdate implements ActionListener {
         private mainClass owner;
@@ -34,19 +46,20 @@ public class mainClass extends JFrame implements WindowListener {
 
     public mainClass() {
         super();
-        setBounds( 200, 200, 800, 600 );
+        setBounds( 200, 200, 800, 500 );
         setTitle( "Task Manager" );
         setVisible( true );
 
         btnRefresh = new JButton();
         btnRefresh.setText( "Refresh" );
-        btnRefresh.setBounds(220, 220, 200, 30);
-        btnRefresh.setVisible( true );
-        add( btnRefresh );
+        btnRefresh.setBounds(10, 420, 200, 30);
+        btnRefresh.setVisible(true);
+        btnRefresh.addActionListener( new btnRefreshUpdate( this ) );
+        add(btnRefresh);
         setLayout( null );
 
         taLog = new JTextArea();
-        taLog.setBounds( 220, 300, 400, 200 );
+        taLog.setBounds( 10, 10, 780, 400 );
         taLog.setVisible(true);
         add( taLog );
         setLayout( null );

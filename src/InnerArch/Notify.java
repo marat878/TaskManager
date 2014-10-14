@@ -24,17 +24,12 @@ public class Notify extends Task {
         switch ( nType )
         {
             case ntInfo:
-                str = String.format( "[%d %s %d %02d:%02d:%02d] %s%n", runTime.getDayOfMonth(),
-                        runTime.getMonth().toString(), runTime.getYear(), runTime.getHour(),
-                        runTime.getMinute(), runTime.getSecond(), cmd );
+                str = String.format( "[%s] %s%n", Utils.TimeFormat( runTime ), cmd );
                 textArea.append( str );
                 break;
 
             case ntWarning:
-                str = String.format( "[%d %s %d %02d:%02d:%02d] [Внимание] %s%n",
-                        runTime.getDayOfMonth(), runTime.getMonth().toString(),
-                        runTime.getYear(), runTime.getHour(),
-                        runTime.getMinute(), runTime.getSecond(), cmd );
+                str = String.format( "[%s] [Внимание] %s %n", Utils.TimeFormat( runTime ), cmd );
                 textArea.append( str );
                 break;
         }

@@ -49,7 +49,7 @@ public class TaskManager {
     {
         int i = 0, len = taskList.GetLength();
 
-        while( i < len-1 )
+        while( i < len )
         {
             if( taskList.getValue( i ).remove )
             {
@@ -75,6 +75,8 @@ public class TaskManager {
         int i, len = taskList.GetLength();
         Task t;
         LocalDateTime curr = LocalDateTime.now();
+
+        if( len == 0 ) return;
 
         if( curr.isAfter( destTime ) )
         {

@@ -17,6 +17,5 @@ public class Task {
     }
 
     public void Do( JTextArea textArea ) { }
-
 }
 
