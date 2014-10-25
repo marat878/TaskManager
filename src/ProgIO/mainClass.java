@@ -40,7 +40,16 @@ public class mainClass extends JFrame implements WindowListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            taskManager.Update( owner.taLog );
+            taskManager.Update();
+            String[] strings = StringStorage.Get();
+            if( strings != null )
+            {
+                for (int i = 0; i < strings.length; i++)
+                {
+                    taLog.append(strings[i]);
+                }
+                StringStorage.Clear();
+            }
         }
     }
 

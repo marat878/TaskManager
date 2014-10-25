@@ -70,7 +70,7 @@ public class TaskManager {
         GetDest();
     }
 
-    public void Update( JTextArea textArea )
+    public void Update()
     {
         int i, len = taskList.GetLength();
         Task t;
@@ -81,7 +81,7 @@ public class TaskManager {
         if( curr.isAfter( destTime ) )
         {
             t = taskList.getValue( destId );
-            t.Do( textArea );
+            t.Do();
             t.remove = true;
 
             for( i = 0; i < len; i++ )
@@ -91,7 +91,7 @@ public class TaskManager {
                 if( t.runTime.isBefore( destTime ) || t.runTime.isEqual( destTime ) )
                 {
                     if( !t.remove )
-                        t.Do( textArea );
+                        t.Do();
                     t.remove = true;
                 }
             }

@@ -16,6 +16,6 @@ public class Task {
         remove = false;
     }
 
-    public void Do( JTextArea textArea ) { }
+    public void Do() { }
 }
 

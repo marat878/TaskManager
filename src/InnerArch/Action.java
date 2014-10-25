@@ -1,5 +1,7 @@
 package InnerArch;
 
+import ProgIO.StringStorage;
+
 import javax.swing.*;
 import java.time.LocalDateTime;
 
@@ -19,7 +21,7 @@ public class Action extends Task {
         remove = false;
     }
 
-    public void Do( JTextArea textArea )
+    public void Do()
     {
         String str;
         switch ( aType )
@@ -28,7 +30,7 @@ public class Action extends Task {
                 ActionRK.Kill( cmd );
                 str = String.format( "[%s] Завершение процесса - %s%n",
                         Utils.TimeFormat( runTime ), cmd );
-                textArea.append( str );
+                StringStorage.Add( str );
                 break;
 
             case atStartProc:
@@ -38,7 +40,7 @@ public class Action extends Task {
                 ActionRK.Run( t );
                 str = String.format( "[%s] Запуск процесса - %s%n",
                         Utils.TimeFormat( runTime ), cmd );
-                textArea.append( str );
+                StringStorage.Add(str);
                 break;
         }
     }
