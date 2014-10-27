@@ -6,10 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
-
 public class Main extends Application {
 
     @Override
@@ -20,6 +16,8 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
-    public static void main(String[] args){launch(args);}
+    public static void main(String[] args)
+    {
+        launch(args);
+    }
 }

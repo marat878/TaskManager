@@ -1,22 +1,15 @@
 package ProgIO;
 
 import InnerArch.TaskManager;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Controller implements Initializable {
     @FXML
@@ -25,37 +18,48 @@ public class Controller implements Initializable {
     Button bx;
 
     TaskManager taskManager = new TaskManager();
-
+    AnimationTimer at;
 
     public void initialize(URL location, ResourceBundle resources)
     {
-        java.util.Timer timer = new java.util.Timer();
-        TimerTask timerTask = new TimerTask() {
+        at = new AnimationTimer() {
             @Override
-            public void run() {
+            public void handle(long now) {
                 Work();
             }
         };
-        timer.schedule(timerTask, 0, 100);
+
+        at.start();
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        at.stop();
     }
 
     @FXML
-    public void Refresh()
-    {
+    public void Refresh() {
+        at.stop();
         taskManager.Refresh();
+        at.start();
     }
 
     public void Work()
     {
-        taskManager.Update();
-        String[] strings = StringStorage.Get();
-        if( strings != null )
-        {
-            for (int i = 0; i < strings.length; i++)
-            {
-                txs.appendText(strings[i]);
+        try {
+            taskManager.Update();
+            String[] strings = StringStorage.Get();
+            if (strings != null) {
+                for (int i = 0; i < strings.length; i++) {
+                    txs.appendText(strings[i]);
+                }
+                StringStorage.Clear();
             }
-            StringStorage.Clear();
+        }
+        catch (NullPointerException e)
+        {
+
         }
     }
 }
