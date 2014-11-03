@@ -2,7 +2,6 @@ package InnerArch;
 
 import ProgIO.StringStorage;
 
-import javax.swing.*;
 import java.time.LocalDateTime;
 
 /**
@@ -11,13 +10,28 @@ import java.time.LocalDateTime;
 public class Notify extends Task {
     public NotifyType nType;
 
-    public Notify(NotifyType type, String command, String parm, LocalDateTime time)
+    public Notify(NotifyType type, String command, String parm, String ID, LocalDateTime time)
     {
         nType = type;
         cmd = command;
         runTime = time;
         param = parm;
         remove = false;
+
+        if( ID.equals("AutoID") )
+        {
+            id = TaskIDManager.GetAutoID();
+            return;
+        }
+
+        if( TaskIDManager.CheckIDEnable(ID) ) {
+            id = ID;
+            TaskIDManager.AddID(ID);
+        }
+        else
+        {
+            throw new IASystemException(String.format("%s ID is an unable.", ID));
+        }
     }
 
     public void Do()
@@ -34,6 +48,7 @@ public class Notify extends Task {
                 str = String.format( "[%s] [Внимание] %s %n", Utils.TimeFormat( runTime ), cmd );
                 StringStorage.Add( str );
                 break;
+
         }
     }
 }

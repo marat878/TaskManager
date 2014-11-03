@@ -22,7 +22,7 @@ public class StringStorage {
     public static String[] Get()
     {
         String[] arr = new String[1];
-        items.toArray(arr);
+        arr = items.toArray(arr);
         return arr;
     }
 }

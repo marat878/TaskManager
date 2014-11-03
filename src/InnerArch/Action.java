@@ -2,7 +2,6 @@ package InnerArch;
 
 import ProgIO.StringStorage;
 
-import javax.swing.*;
 import java.time.LocalDateTime;
 
 /**
@@ -12,13 +11,28 @@ import java.time.LocalDateTime;
 public class Action extends Task {
     public ActionType aType;
 
-    public Action(ActionType type, String command, String parm, LocalDateTime time)
+    public Action(ActionType type, String command, String parm, String ID, LocalDateTime time)
     {
         aType = type;
         cmd = command;
         runTime = time;
         param = parm;
         remove = false;
+
+        if( ID.equals("AutoID") )
+        {
+            id = TaskIDManager.GetAutoID();
+            return;
+        }
+
+        if( TaskIDManager.CheckIDEnable(ID) ) {
+            id = ID;
+            TaskIDManager.AddID(ID);
+        }
+        else
+        {
+            throw new IASystemException(String.format("%s ID is an unable.", ID));
+        }
     }
 
     public void Do()

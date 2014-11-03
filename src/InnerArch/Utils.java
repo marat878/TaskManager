@@ -1,5 +1,6 @@
 package InnerArch;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -55,5 +56,21 @@ public class Utils {
         return String.format( "%d %s %d %02d:%02d:%02d", localDateTime.getDayOfMonth(),
                 GetMonthName( localDateTime.getMonth().getValue() ), localDateTime.getYear(), localDateTime.getHour(),
                 localDateTime.getMinute(), localDateTime.getSecond() );
+    }
+
+    public static LocalDateTime ParseTime( String str )
+    {
+        String[] temp = str.split(":");
+        if( temp.length != 6 ) return null;
+        return LocalDateTime.of(Integer.parseInt(temp[2]),
+                Integer.parseInt(temp[1]), Integer.parseInt(temp[0]),
+                Integer.parseInt(temp[3]), Integer.parseInt(temp[4]),
+                Integer.parseInt(temp[5]));
+    }
+
+    public static boolean DateTimeClose( LocalDateTime ldt1, LocalDateTime ldt2 )
+    {
+        int dif = Math.abs(ldt1.getMinute() - ldt2.getMinute());
+        return dif <= 1;
     }
 }

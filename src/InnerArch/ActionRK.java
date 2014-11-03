@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class ActionRK {
 
-    public static void Run(String[] cmd )
+    public static boolean Run(String[] cmd )
     {
         try
         {
@@ -16,10 +16,12 @@ public class ActionRK {
         catch (IOException e)
         {
             System.out.println( e.toString() );
+            return false;
         }
+        return true;
     }
 
-    public static void Kill(String processName)
+    public static boolean Kill(String processName)
     {
         try {
             String[] cmd = new String[] { "cmd.exe", "/C", "taskkill /f /im", processName };
@@ -28,6 +30,8 @@ public class ActionRK {
         catch (IOException e)
         {
             System.out.println( e.toString() );
+            return false;
         }
+        return true;
     }
 }

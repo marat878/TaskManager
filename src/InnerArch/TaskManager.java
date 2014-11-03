@@ -19,30 +19,26 @@ public class TaskManager {
         Refresh();
     }
 
-    private void GetDest()
+    private void Sort()
     {
-        int i, len = taskList.GetLength();
+        int i, j;
+        LocalDateTime ldt1, ldt2;
         Task t;
-
-        if( taskList.GetLength() == 0 )
+        for( i = 0; i < taskList.GetLength(); i++ )
         {
-            destTime = null;
-            return;
-        }
-
-        LocalDateTime ldt = taskList.getValue(0).runTime;
-
-        for( i = 0; i < len; i++ )
-        {
-            t = taskList.getValue( i );
-            if( t.runTime.isBefore( ldt ) )
+            for( j = 0; j < taskList.GetLength()-1; j++ )
             {
-                ldt = t.runTime;
-                destId = i;
+                ldt1 = taskList.getValue(j).runTime;
+                ldt2 = taskList.getValue(j+1).runTime;
+                if( ldt1.isAfter(ldt2) )
+                {
+                    t = taskList.getValue(j);
+                    taskList.setValue(j, taskList.getValue(j+1));
+                    taskList.setValue(j+1, t);
+                }
             }
         }
-
-        destTime = ldt;
+        destId = 0;
     }
 
     private void Cleanup()
@@ -67,7 +63,7 @@ public class TaskManager {
     public void Refresh()
     {
         parser.TaskReader();
-        GetDest();
+        Sort();
     }
 
     public void Update()
@@ -78,27 +74,28 @@ public class TaskManager {
 
         if( len == 0 ) return;
 
-        if( curr.isAfter( destTime ) )
+        for( i = 0; i < len; i++ )
         {
-            t = taskList.getValue( destId );
-            t.Do();
-            t.remove = true;
+            t = taskList.getValue(i);
 
-            for( i = 0; i < len; i++ )
-            {
-                t = taskList.getValue( i );
-
-                if( t.runTime.isBefore( destTime ) || t.runTime.isEqual( destTime ) )
-                {
-                    if( !t.remove )
-                        t.Do();
+            if (curr.isEqual(t.runTime)) {
+                if(!t.remove) {
+                    t.Do();
                     t.remove = true;
                 }
             }
-
-            Cleanup();
-            GetDest();
+            else
+            if (curr.isAfter(t.runTime))
+            {
+                if(Utils.DateTimeClose( t.runTime, curr )) {
+                    if (!t.remove) {
+                        t.Do();
+                        t.remove = true;
+                    }
+                }
+            }
         }
 
+        Cleanup();
     }
 }

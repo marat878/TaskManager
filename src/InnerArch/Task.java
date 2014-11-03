@@ -8,13 +8,11 @@ import java.time.LocalDateTime;
  */
 
 public class Task {
-    public String cmd, param;
+    public String cmd, param, id;
     public LocalDateTime runTime;
     public boolean remove;
 
-    Task() {
-        remove = false;
-    }
+    Task() {}
 
     public void Do() { }
 }

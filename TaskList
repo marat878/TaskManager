@@ -1,0 +1,4 @@
+/Список задач
+/AddAction AutoID Run notepad.exe nil 28:10:2014:22:34:00
+AddNotify AutoID, Info, 'Hello World!', 30, 03:11:2014:23:22:00
+AddNotify AutoID, Info, 'Hello Task!', 30, 03:11:2014:23:22:00
