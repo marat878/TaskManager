@@ -1,5 +1,7 @@
 package InnerArch;
 
+import ProgIO.StringStorage;
+
 import javax.swing.*;
 import java.time.LocalDateTime;
 
@@ -64,6 +66,27 @@ public class TaskManager {
     {
         parser.TaskReader();
         Sort();
+    }
+
+    public void TaskInspect()
+    {
+        int i;
+        Task t;
+        for( i = 0; i < taskList.GetLength(); i++ )
+        {
+            t = taskList.getValue(i);
+            if( t.getClass() == Notify.class ) {
+                StringStorage.Add(String.format("Задача -- Тип: Notify%n"));
+            }
+            if( t.getClass() == Action.class ) {
+                StringStorage.Add(String.format("Задача -- Тип: Action%n"));
+            }
+
+            StringStorage.Add(String.format("  ID: %s%n", t.id));
+            StringStorage.Add(String.format("  Команда: %s%n", t.cmd));
+            StringStorage.Add(String.format("  Параметр: %s%n", t.param));
+            StringStorage.Add(String.format("  Дата/Время: %s%n", Utils.TimeFormat(t.runTime)));
+        }
     }
 
     public void Update()

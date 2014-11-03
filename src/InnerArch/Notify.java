@@ -21,6 +21,7 @@ public class Notify extends Task {
         if( ID.equals("AutoID") )
         {
             id = TaskIDManager.GetAutoID();
+            TaskIDManager.AddID(id);
             return;
         }
 

@@ -26,6 +26,7 @@ public class TaskIDManager {
 
         do {
             t = String.format("tsk%d", i);
+            i++;
         }
         while (!CheckIDEnable(t));
 

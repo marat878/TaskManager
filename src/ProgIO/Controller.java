@@ -42,6 +42,7 @@ public class Controller implements Initializable {
     public void Refresh() {
         at.stop();
         taskManager.Refresh();
+        //taskManager.TaskInspect();
         at.start();
     }
 
