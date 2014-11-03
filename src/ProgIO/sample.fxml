@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<GridPane alignment="center" hgap="10" prefHeight="395.0" prefWidth="525.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProgIO.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="395.0" prefWidth="525.0" stylesheets="@style.css" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProgIO.Controller">
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
@@ -25,6 +25,6 @@
     </rowConstraints>
     <children>
       <TextArea fx:id="txs" prefHeight="350.0" prefWidth="450.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Button fx:id="bx" onAction="#Refresh" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" text="Refresh" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Button fx:id="bx" mnemonicParsing="false" onAction="#Refresh" prefHeight="45.0" prefWidth="140.0" text="Refresh" GridPane.columnIndex="2" GridPane.rowIndex="2" />
    </children>
 </GridPane>
