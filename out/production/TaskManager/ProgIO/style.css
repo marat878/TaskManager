@@ -6,7 +6,7 @@
         linear-gradient(#395cab, #223768);
     -fx-background-insets: 0,1,2,3;
     -fx-background-radius: 10,9,9,9;
-    -fx-padding: 5 20 5 20;
+    -fx-padding: 5 10 5 10;
     -fx-text-fill: white;
     -fx-font-size: 12px;
     }
@@ -30,4 +30,5 @@
 
 #txs {
     -fx-font-size: 14px;
+    -fx-text-fill: #687daf;
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
+import javafx.scene.web.HTMLEditor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,11 +40,20 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void Refresh() {
+     public void Refresh() {
         at.stop();
         taskManager.Refresh();
-        //taskManager.TaskInspect();
         at.start();
+    }
+
+    @FXML
+    public void Clear() {
+        txs.setText("");
+    }
+
+    @FXML
+    public void ShowAllEvents(){
+        taskManager.TaskInspect();
     }
 
     public void Work()

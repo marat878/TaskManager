@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -16,15 +18,23 @@
         <ColumnConstraints />
         <ColumnConstraints />
     </columnConstraints>
-    <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-    </rowConstraints>
     <children>
-      <TextArea fx:id="txs" prefHeight="350.0" prefWidth="450.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Button fx:id="bx" mnemonicParsing="false" onAction="#Refresh" prefHeight="45.0" prefWidth="140.0" text="Refresh" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <TextArea fx:id="txs" prefHeight="350.0" prefWidth="450.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Button fx:id="bx" mnemonicParsing="false" onAction="#Refresh" prefHeight="30.0" prefWidth="150.0" text="Refresh" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="80.0" />
+         </GridPane.margin></Button>
+      <Button fx:id="bxs" mnemonicParsing="false" onAction="#Clear" prefHeight="30.0" prefWidth="150.0" text="Clear log" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="40.0" />
+         </GridPane.margin></Button>
+        <Button fx:id="bxss" mnemonicParsing="false" onAction="#ShowAllEvents" prefHeight="30.0" prefWidth="150.0" text="All events" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin></Button>
    </children>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>
